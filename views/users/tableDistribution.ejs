@@ -1,0 +1,20 @@
+<table class="table table-hover">
+	<thead class="thead-inverse">
+		<tr>
+			<th id="username-header">User</th>
+			<% if (admin) { %>
+			<th id="password-header">City</th>
+			<th id="distribution-address-header" class="text-center">Distribution address</th>
+			<% } %>
+			<th id="email-header">Email</th>
+			<% if (admin) { %>
+			<th id="remove-user-header" class="text-center">remove user</th>
+			<% } %>
+		</tr>
+	</thead>
+	<tbody id="tbody">
+		<script id="row-template" type="text/x-custom-template">
+			<%- include('user') %>
+		</script>
+	</tbody>
+</table>

@@ -1,0 +1,25 @@
+<!-- login-מייצר את המבנה של ההרשמה הראשית
+ authController הקובץ הזה נקרא מתוך -->
+<div class="row">
+    <div class="Absolute-Center is-Responsive">
+        <div class="col-sm-12 col-md-10">
+            <form method="POST" id="loginForm">
+                <div class="form-group form-row">
+                    <span class="col-auto col-sm-1 col-form-label"><em class="fas fa-user"></em></span>
+                    <div class="col-10 col-sm-11">
+                        <input class="form-control" type="text" name='username' placeholder="Enter Username" required/>
+                    </div>
+                </div>
+                <div class="form-group form-row">
+                    <span class="col-auto col-sm-1 col-form-label"><em class="fas fa-lock"></em></span>
+                    <div class="col-10 col-sm-11">
+                        <input class="form-control" type="password" name='password' placeholder="Enter Password" required/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

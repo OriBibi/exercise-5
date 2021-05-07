@@ -1,0 +1,26 @@
+<tr>
+	<td id="username"><%= userName %></td>
+	<% if (admin) { %>
+	<td id="password"><%= currentUser.password %></td>
+	<td id="admin" class="text-center"><%= admin %></td>
+	<% } %>
+	<td id="name"><%= currentUser.name %></td>
+	<td id="email"><%= email %></td>
+	<td
+		class="text-center text-danger"
+		title="distribution "
+		style="cursor: copy"
+		onclick="update($(this).parent());"
+	>	<em class="fa fa-user-plus"></em>
+</td>
+	<% if (admin) { %>
+	<td
+		class="text-center text-danger"
+		title="delete user"
+		style="cursor: pointer"
+		onclick="remove($(this).parent());"
+	>
+		<em class="fa fa-user-minus"></em>
+	</td>
+	<% } %>
+</tr>

@@ -1,0 +1,74 @@
+<script defer>
+	async function remove($row) {
+	    user = $($row).find('#username').text();
+	    if (confirm("Do you really want to delete user '" + user + "'?")) {
+	        try {
+	            await fetch(`/users/${user}`, {method: 'DELETE', credentials: 'same-origin'});
+	        } catch (err) {
+	            console.error(er);
+	        }
+	        location = "/users";
+	    }
+	}
+	async function update($row) {
+	    user = $($row).find('#username').text();
+	    if (confirm("Do you  want to update distribution for the user '" + user + "'?")) {
+	        location = "/users/distribution";
+	    }
+	}
+	async function tableDistribution($row) {
+	        location = "/users/tableDistribution";
+	}
+	async function buildRows() {
+	    let users = [];
+	    $tbody = $("#tbody");
+	    try {
+	        users =  await (await fetch(`/users/list`, {credentials: 'same-origin'})).json();
+	    } catch (err) {
+	        console.error(err);
+	    }
+	    let template = $($('#row-template').html());
+	    users.forEach(user => {
+	        $row = template.clone();
+	        $row.find("#username").text(user.username);
+	        $row.find("#name").text(user.name);
+	        $row.find("#password").text(user.password);
+	        $row.find("#admin").text(user.admin);
+			$row.find("#email").text(user.email);
+	        $row.appendTo($tbody);
+	    });
+	}
+	   $(document).ready(()=> {
+	       buildRows()
+	   })
+</script>
+<% if (admin) { %>
+	<a href="users/add" class="mt-1 mb-3 btn btn-outline-primary"
+	>Create New User</a>
+	<a href="users/tableDistribution" class="mt-1 mb-3 btn btn-outline-primary"
+	>Daily distribution</a>
+	<% } %>
+
+
+<table class="table table-hover">
+	<thead class="thead-inverse">
+		<tr>
+			<th id="username-header">User</th>
+			<% if (admin) { %>
+			<th id="password-header">Password</th>
+			<th id="admin-header" class="text-center">Admin</th>
+			<% } %>
+			<th id="name-header">Name</th>
+			<th id="email-header">Email</th>
+			<th id="update-distribution-header" class="text-center">Update Distribution</th>
+			<% if (admin) { %>
+			<th id="remove-user-header" class="text-center">remove user</th>
+			<% } %>
+		</tr>
+	</thead>
+	<tbody id="tbody">
+		<script id="row-template" type="text/x-custom-template">
+			<%- include('user') %>
+		</script>
+	</tbody>
+</table>

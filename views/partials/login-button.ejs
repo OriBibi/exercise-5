@@ -1,0 +1,33 @@
+<!-- section: login-button.ejs -  necessary-->
+<div class="d-flex align-items-end">
+	<% if (loggedIn ) { %>
+		<%	if(admin){%>
+			<p class="my-0 text-white">
+				Logged in as manager, welcome 
+				<a href="<%=`/users/${currentUser.username}`%>">
+					<%= currentUser.name; %>
+				</a>
+				<a
+					class="py-2 ml-2 h3 mb-0 font-weight-lighter badge badge-pill badge-danger"
+					href="/auth/logout"
+					>Log out</a
+				>
+			</p>
+			<% } else { %>
+				<p class="my-0 text-white">
+					Logged in as volunteer, welcome 
+					<a href="<%=`/users/${currentUser.username}`%>">
+						<%= currentUser.name; %>
+					</a>
+					<a
+						class="py-2 ml-2 h3 mb-0 font-weight-lighter badge badge-pill badge-danger"
+						href="/auth/logout"
+						>Log out</a
+					>
+				</p>
+				<% } %>
+	<% } else { %>
+	<a href="/auth/login">Log in</a>
+	<% } %>
+</div>
+<!-- /section: login-button.ejs -->
