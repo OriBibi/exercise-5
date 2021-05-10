@@ -10,7 +10,11 @@ const getUserParams = body => {
         admin: body.admin,
         username: body.username,
         password: body.password,
-        email:body.email
+        email:body.email,
+        adress:body.adress,
+        city:body.city,
+        date:body.date,
+        isPeekToDistribute:body.isPeekToDistribute
     }
 }
 
@@ -31,11 +35,12 @@ module.exports = {
             next()
         }
     },
-
+    
     index: (req, res, next) => {
         User.find()
             .then(users => {
                 res.locals.users = users
+                // console.log('22222222',res.locals.users)
                 next()
             })
             .catch(error => {
@@ -60,6 +65,9 @@ module.exports = {
         },
         tableDistribution: (req, res) => {
             res.render("users/tableDistribution", { title: "Add User", header: "daily distribution" })
+        },
+        isAdmin:(req,res,next)=>{
+            return res.json(User.find().then())
         },
     create: (req, res, next) => {
         if (req.skip) return next()

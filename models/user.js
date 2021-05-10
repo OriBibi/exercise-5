@@ -10,6 +10,10 @@ const userSchema = new Schema(
         password: { type: String, required: true },
         admin: Boolean,
         email: String,
+        city: String,
+        date: {type: Date, required: false},
+        isPeekToDistribute: Boolean,
+        adress: String,
         location: String,
         meta: {
             age: Number,

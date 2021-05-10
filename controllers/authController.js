@@ -41,6 +41,11 @@ module.exports = {
                 req.session.admin = user.admin
                 req.session.userName = user.name
                 req.session.email = user.email
+                req.session.city = user.city
+                req.session.adress = user.adress
+                req.session.isPeekToDistribute = user.isPeekToDistribute
+                req.session.date = user.date
+
 
                 // req.session.admin = manager.admin
                 // req.session.managerId = manager.id
