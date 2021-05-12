@@ -18,18 +18,16 @@ const { db } = require('./models/user')
 
 const app = express()
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.engine('html', require('ejs').renderFile);
 app.set("layout extractScripts", true)
 
-// middleware setup
 app.use(logger('dev'))
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(favicon(path.join(__dirname, 'public', 'img', 'favicon.ico')))
 app.use(expressLayouts)
-// @ts-ignore
+
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser(process.env.COOKIE_SECRET || "my_cookie_secret"))
@@ -41,13 +39,12 @@ app.use(expressSession({
   resave: false,
   saveUninitialized: false
 }))
+
 app.use(connectFlash())
-// passport init
 app.use(passport.initialize())
 app.use(passport.session())
 
 
-// add variables for ejs engine
 app.use((req, res, next) => {
   res.locals.flashMessages = req.flash()
   res.locals.loggedIn = req.isAuthenticated()
@@ -63,11 +60,8 @@ app.use((req, res, next) => {
   res.locals.count = req.session.count
   res.locals.path = req.path
   console.log('1111111111111',res.locals.admin)
-
   next()
 })
-
-// routes
 app.use(routes)
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -76,16 +70,6 @@ app.use(function (req, res, next) {
 
 
 
-// error handler
-app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.errorMessage = err.status === 404 ? "Oops! Something went wrong. The page you're looking for does not exist" : "Sorry! Something went wrong with our application :("
-  res.locals.message = err.message
-  res.locals.error = req.app.get('env') === 'development' ? err : {}
-  res.locals.env = req.app.get('env')
-  // render the error page
-  res.status(err.status || 500)
-  res.render('error', { title: "error", header: res.locals.errorMessage })
-})
+
 
 module.exports = app
