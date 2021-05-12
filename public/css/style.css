@@ -7,7 +7,13 @@ body {
 a {
 	color: #00b7ff;
 }
-
+.header1 {
+	padding: 20px;
+	text-align: center;
+	background:white ;
+	color: #ace1e4;
+	font-size: 15px;
+  }
 .Absolute-Center {
 	margin: auto;
 	position: absolute;
