@@ -2,25 +2,25 @@
 <div class="d-flex align-items-end">
 	<% if (loggedIn ) { %>
 		<%	if(admin){%>
-			<p class="my-0 text-white">
+			<p class="my-0 text-brand">
 				Logged in as manager, welcome 
 				<a href="<%=`/users/${currentUser.username}`%>">
 					<%= currentUser.name; %>
 				</a>
 				<a
-					class="py-2 ml-2 h3 mb-0 font-weight-lighter badge badge-pill badge-danger"
+					class="btn btn-primary btn-sm"
 					href="/auth/logout"
 					>Log out</a
 				>
 			</p>
 			<% } else { %>
-				<p class="my-0 text-white">
+				<p class="my-0 text-brand">
 					Logged in as volunteer, welcome 
 					<a href="<%=`/users/${currentUser.username}`%>">
 						<%= currentUser.name; %>
 					</a>
 					<a
-						class="py-2 ml-2 h3 mb-0 font-weight-lighter badge badge-pill badge-danger"
+						class="btn btn-primary btn-sm"
 						href="/auth/logout"
 						>Log out</a
 					>

@@ -11,7 +11,7 @@ module.exports = {
             if (req.session.badLogin !== undefined) {
                 req.flash("error", req.session.badLogin)
             }
-            return res.render("auth/login", { title: "Login", header: "HomeVolunteer web site" })
+            return res.render("auth/login", { title: "Login", header: "Login" })
         }
         else {
             res.locals.redirect = "/"
